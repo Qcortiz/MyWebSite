@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список сотрудников</title>
+    <style>
+        /* Основные стили */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Контейнер для списка */
+        .list-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .list-container h1 {
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        /* Стили для списка */
+        .employee-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            margin-bottom: 20px;
+        }
+
+        .employee-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .employee-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Стили для кнопок */
+        .action-buttons button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 16px;
+        }
+
+        .action-buttons button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="list-container">
+        <h1>Список сотрудников</h1>
+        
+        <!-- Список сотрудников -->
+        <ul class="employee-list" id="employeeList">
+            <li>Петр Сергеевич — +7 904 023 9495 <button onclick="removeEmployee(this)">Удалить</button></li>
+            <li>Николай Симонов — +7 942 748 5827 <button onclick="removeEmployee(this)">Удалить</button></li>
+            <li>Григорий Женевский — +7 928 475 8274 <button onclick="removeEmployee(this)">Удалить</button></li>
+        </ul>
+        
+        <!-- Поля ввода для добавления нового сотрудника -->
+        <input type="text" id="newEmployeeName" placeholder="Имя сотрудника" required>
+        <input type="text" id="newEmployeePhone" placeholder="Телефон сотрудника" required>
+
+        <!-- Кнопки добавления и удаления -->
+        <div class="action-buttons">
+            <button onclick="addEmployee()">Добавить сотрудника</button>
+        </div>
+    </div>
+
+    <script>
+        // Функция для добавления нового сотрудника
+        function addEmployee() {
+            const name = document.getElementById('newEmployeeName').value;
+            const phone = document.getElementById('newEmployeePhone').value;
+
+            if (name && phone) {
+                const employeeList = document.getElementById('employeeList');
+
+                // Создаем новый элемент списка с именем и телефоном сотрудника
+                const li = document.createElement('li');
+                li.innerHTML = `${name} — ${phone} <button onclick="removeEmployee(this)">Удалить</button>`;
+
+                employeeList.appendChild(li);
+
+                // Очищаем поля ввода
+                document.getElementById('newEmployeeName').value = '';
+                document.getElementById('newEmployeePhone').value = '';
+            } else {
+                alert('Пожалуйста, заполните все поля.');
+            }
+        }
+
+        // Функция для удаления сотрудника
+        function removeEmployee(button) {
+            const li = button.parentElement;
+            li.remove();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог с рекламными блоками</title>
+    <style>
+        /* Основные стили */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding-top: 20px;
+        }
+
+        /* Основной контейнер */
+        .main-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Стили для каталога */
+        .catalog-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .catalog-container h1 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        /* Стили для товаров */
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .product-card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            width: 180px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .product-card h2 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .product-card p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .product-card .price {
+            font-weight: bold;
+            color: #4CAF50;
+            margin-top: 5px;
+        }
+
+        /* Стили для рекламы */
+        .ad-container {
+            background-color: #fffbe6;
+            border-radius: 8px;
+            padding: 10px;
+            max-width: 200px;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .ad-container h2 {
+            color: #f39c12;
+            font-size: 18px;
+        }
+
+        .ad-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .ad-item {
+            background-color: #fdf2d5;
+            padding: 10px;
+            border-radius: 4px;
+            position: relative;
+            text-align: left;
+        }
+
+        .ad-item button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Стили для формы добавления рекламы */
+        .add-ad-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .add-ad-form input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        .add-ad-form button {
+            background-color: #f39c12;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .add-ad-form button:hover {
+            background-color: #e67e22;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Левая реклама -->
+        <div class="ad-container">
+            <h2>Реклама слева</h2>
+            <div class="ad-list" id="leftAdList">
+                <!-- Рекламные блоки будут добавлены сюда -->
+            </div>
+            <form class="add-ad-form" onsubmit="addAd('leftAdList', event)">
+                <input type="text" placeholder="Описание рекламы" id="leftAdText">
+                <button type="submit">Добавить рекламу</button>
+            </form>
+        </div>
+
+        <!-- Каталог товаров -->
+        <div class="catalog-container">
+            <h1>Каталог мебели</h1>
+            <div class="product-list">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150" alt="Диван Комфорт">
+                    <h2>Диван "Комфорт"</h2>
+                    <p>Удобный диван для вашей гостиной.</p>
+                    <p class="price">Цена: 20 000 руб.</p>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150" alt="Стол Практик">
+                    <h2>Стол "Практик"</h2>
+                    <p>Прочный стол для работы и учебы.</p>
+                    <p class="price">Цена: 10 000 руб.</p>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150" alt="Кресло Уют">
+                    <h2>Кресло "Уют"</h2>
+                    <p>Эргономичное кресло для максимального комфорта.</p>
+                    <p class="price">Цена: 15 000 руб.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Правая реклама -->
+        <div class="ad-container">
+            <h2>Реклама справа</h2>
+            <div class="ad-list" id="rightAdList">
+                <!-- Рекламные блоки будут добавлены сюда -->
+            </div>
+            <form class="add-ad-form" onsubmit="addAd('rightAdList', event)">
+                <input type="text" placeholder="Описание рекламы" id="rightAdText">
+                <button type="submit">Добавить рекламу</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Функция для добавления рекламного блока
+        function addAd(adListId, event) {
+            event.preventDefault();
+            
+            // Получаем текст рекламы в зависимости от того, какой блок выбран
+            const adTextInputId = adListId === 'leftAdList' ? 'leftAdText' : 'rightAdText';
+            const adText = document.getElementById(adTextInputId).value;
+            if (!adText) return;
+
+            // Создаем новый элемент рекламы
+            const adItem = document.createElement('div');
+            adItem.className = 'ad-item';
+            adItem.innerHTML = `
+                <p>${adText}</p>
+                <button onclick="removeAd(this)">Удалить</button>
+            `;
+
+            // Добавляем рекламный элемент в нужный список
+            document.getElementById(adListId).appendChild(adItem);
+
+            // Очищаем поле ввода
+            document.getElementById(adTextInputId).value = '';
+        }
+
+        // Функция для удаления рекламного блока
+        function removeAd(button) {
+            const adItem = button.parentElement;
+            adItem.remove();
+        }
+    </script>
+</body>
+</html>

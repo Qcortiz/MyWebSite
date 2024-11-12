@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ООО "Мебель" - Главная</title>
+    <style>
+        /* Основные стили */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Шапка */
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Блок для имени пользователя или кнопки регистрации */
+        .user-info {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 16px;
+        }
+
+        /* Кнопка регистрации */
+        .register-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* Навигация */
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            background-color: #4CAF50;
+        }
+
+        /* Секции */
+        section {
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ООО "Мебель"</h1>
+        <p>Добро пожаловать в наш мебельный магазин!</p>
+
+        <!-- Информация о пользователе или кнопка регистрации -->
+        <div class="user-info" id="userInfo"></div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="catalog.html">Каталог</a></li>
+            <li><a href="register.html">Регистрация</a></li>
+        </ul>
+    </nav>
+    
+    <section>
+        <h2>О нас</h2>
+        <p>Мы предлагаем широкий ассортимент мебели для дома и офиса.</p>
+    </section>
+
+    <script>
+        // Проверяем наличие имени пользователя в localStorage
+        const userInfoDiv = document.getElementById('userInfo');
+        const username = localStorage.getItem('username');
+
+        if (username) {
+            // Если пользователь зарегистрирован, показываем его имя
+            userInfoDiv.textContent = `Здравствуйте, ${username}`;
+        } else {
+            // Если не зарегистрирован, показываем кнопку регистрации
+            userInfoDiv.innerHTML = `<a href="register.html" class="register-button">Зарегистрироваться</a>`;
+        }
+    </script>
+</body>
+</html>
+

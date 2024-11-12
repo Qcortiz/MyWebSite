@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <style>
+        /* Основные стили */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        /* Контейнер формы */
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .form-container h1 {
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        .form-container p {
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .form-container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+
+        /* Стили для ссылки на вход */
+        .form-container .login-link {
+            display: block;
+            margin-top: 20px;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .form-container .login-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Регистрация</h1>
+        <p>Заполните поля ниже, чтобы создать аккаунт</p>
+
+        <!-- Форма регистрации -->
+        <form onsubmit="registerUser(event)">
+            <input type="text" id="username" placeholder="Имя пользователя" required>
+            <input type="password" id="password" placeholder="Пароль" required>
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+
+        <!-- Кнопка для зарегистрированных пользователей -->
+        <a href="role_selection.html" class="login-link">Войти как сотрудик</a>
+    </div>
+
+    <script>
+        function registerUser(event) {
+            event.preventDefault(); // Останавливает отправку формы
+
+            // Получаем значения полей
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Проверяем, что оба поля заполнены
+            if (username && password) {
+                // Сохраняем имя пользователя в localStorage
+                localStorage.setItem('username', username);
+
+                // Перенаправляем на catalog.html
+                window.location.href = 'catalog.html';
+            } else {
+                alert('Пожалуйста, заполните оба поля.');
+            }
+        }
+    </script>
+</body>
+</html>
